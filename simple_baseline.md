@@ -1,0 +1,10 @@
+For our weak baseline, we used a term frequency inverse document frequency vectorizor the text from the comments in order to extract our features. We fed these features into the sklearn's DummyClassifier, which is a classifier that makes predictions using simple rules. We used a “stratified” approach, which generates predictions by respecting the training set’s class distribution. Stratified sampling aims to split the members of the population into different subpopulations based on other samples that are similar, so this is often better than other approaches. Other approaches might be like comparing apples to oranges. We fitted separate dummy classifiers for each label, so the classifier lacks knowledge of the other labels, which may be a disadvantage. This is particularly important in the case of knowing whether or not the comment was classified as toxic, since all other labels are false if the comment is not labeled as toxic. The lack of complexity and knowledge in the model make it a good simple baseline.
+
+The simple baseline scored on the testing data as follows:
+
+Accuracy : 0.7208149353164459
+F score : 0.06471058222778961
+Precision : 0.0651262885453231
+Recall : 0.06434962147281487
+
+Overall, this is a relatively high accuracy, considering we are performing binary classification, but much of this relates to class imbalance. There are far more comments that are not toxic than there are toxic, and of the comments that are toxic, it is much more common that toxic comments express 1 or 2 types of toxicity as opposed to all types. As a result, we have many more 0 labels than 1 labels, and the model is biased towards these predictions, which means it is easier to be accurate in doing so. The F Score, Precision, and Recall were low in relation to the Accuracy because even though the predictions were typically accurate, there were many false positives and false negatives.
